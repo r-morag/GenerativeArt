@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r libraries, include = FALSE}
 library(jasmines)
 library(dplyr)
 library(tidyverse)
@@ -18,7 +18,7 @@ library(aRtsy)
 library(wesanderson)
 ```
 
-```{r}
+```{r, echo = FALSE}
 set.seed(8)
 data <- data.frame(
   x = rgamma(1000, 3),
@@ -40,7 +40,7 @@ Everybody starts somewhere. Some of us come from a large world. Some of us come 
 I created a random data frame, generating x-values from a gamma distribution and y-values from a standard normal distribution. At first, I sampled both coordinates from standard normals but the gamma distribution caused the circles to shfit towards the left of the plane. This created more of a story in the art piece. I created thirty different variable options that got randomly selected to each of the coordinate pairs. I did the same with a size variable. Finaly, I created the ggplot using the aformentioned variables. Shape = 21 sets the shapes to filled circles and they're filled with white. This created the effect of empty circles in the artwork. Setting stroke equal to 0.5 puts a very thin line around each of the circles, making it easy for the viewer to differentiate between circles. Alpha = 0.8 means that the filled circles will have 80% opacity. The void theme removes all background grid lines and leaves the beautiful artwork.
 
 
-```{r}
+```{r, echo = FALSE}
 bottle <- wes_palette("BottleRocket1")
 
 canvas_circlemap(colors = bottle, left = -12, right = 12.56, bottom = 0, top = 1, iterations = 7, resolution = 1500)
