@@ -1,0 +1,54 @@
+---
+title: "Lab 8"
+author: "Roee Morag"
+date: "2023-06-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(jasmines)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(aRtsy)
+library(wesanderson)
+```
+
+```{r}
+set.seed(8)
+data <- data.frame(
+  x = rgamma(1000, 3),
+  y = rnorm(1000),
+  color = factor(sample(1:30, 1000, replace = TRUE)),
+  size = runif(1000, 0.5, 100)
+)
+
+ggplot(data, aes(x = x, y = y, color = color, size = size)) +
+  geom_point(shape = 21, fill = "white", stroke = 0.5, alpha = 0.8, show.legend = FALSE) +
+  theme_void()
+  
+```
+
+"Away From the Pack"
+
+Everybody starts somewhere. Some of us come from a large world. Some of us come from a small world. But at the end of the day, we all inhabit the same world. Each individual bubble respresents anything - a person, an idea, an abstract waiting to be unleased. Those on the right have already begun the journey to the unknown. C'est la vie.
+
+I created a random data frame, generating x-values from a gamma distribution and y-values from a standard normal distribution. At first, I sampled both coordinates from standard normals but the gamma distribution caused the circles to shfit towards the left of the plane. This created more of a story in the art piece. I created thirty different variable options that got randomly selected to each of the coordinate pairs. I did the same with a size variable. Finaly, I created the ggplot using the aformentioned variables. Shape = 21 sets the shapes to filled circles and they're filled with white. This created the effect of empty circles in the artwork. Setting stroke equal to 0.5 puts a very thin line around each of the circles, making it easy for the viewer to differentiate between circles. Alpha = 0.8 means that the filled circles will have 80% opacity. The void theme removes all background grid lines and leaves the beautiful artwork.
+
+
+```{r}
+bottle <- wes_palette("BottleRocket1")
+
+canvas_circlemap(colors = bottle, left = -12, right = 12.56, bottom = 0, top = 1, iterations = 7, resolution = 1500)
+```
+
+"Interstellar"
+
+The deep unknown. This art piece reflects just how much of the world is unknown. The rings of Saturn. The rings of marriage. All continue to tie us to a further drift into the unknown.
+
+I downloaded the packages aRtsy and wesanderson to create this artwork. "wesanderson" generates a color palette from Wes Anderson movies. I used the color palette from Bottle Rocket, a movie from 1996. I used the function canvas_circlemap from the package "aRtsy". This function, as listed in the R Documentation, draws a circle map that creates Arnold's tongue (a cool shape from what I gather). The left, right, top, and bottom center the graphic. The iterations specifies the number of iterations in the algorithm. As the number of iterations goes higher, and starting around 30, Arnold's tongue becomes more of a diamond shape instead of a circular shape.
+
